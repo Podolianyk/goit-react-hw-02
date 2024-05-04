@@ -5,48 +5,48 @@ import Feedback from "../Feedback/Feedback";
 import Notification from "../Notification/Notification";
 import css from "./App.module.css";
 
-const clickState = { good: 0, neutral: 0, bad: 0 };
+const feedbacksState = { good: 0, neutral: 0, bad: 0 };
 
 export default function App() {
-  const [clicks, setClicks] = useState(() => {
-    const savedClicks = localStorage.getItem("my-clicks");
+  const [feedbacks, setFeedbacks] = useState(() => {
+    const savedClicks = localStorage.getItem("feedback");
     if (savedClicks !== null) {
       return JSON.parse(savedClicks);
     }
-    return clickState;
+    return feedbacksState;
   });
 
   useEffect(() => {
-    localStorage.setItem("my-clicks", JSON.stringify(clicks));
-  }, [clicks]);
+    localStorage.setItem("feedback", JSON.stringify(feedbacks));
+  }, [feedbacks]);
 
   const updateFeedback = (option) => {
-    setClicks({
-      ...clicks,
-      [option]: clicks[option] + 1,
+    setFeedbacks({
+      ...feedbacks,
+      [option]: feedbacks[option] + 1,
     });
   };
 
   const handleReset = () => {
-    setClicks(clickState);
+    setFeedbacks(feedbacksState);
   };
 
-  const totalFeedback = clicks.good + clicks.neutral + clicks.bad;
+  const totalFeedback = feedbacks.good + feedbacks.neutral + feedbacks.bad;
 
   return (
     <div className={css.container}>
       <Description />
       <Options
-        clicks={clicks}
+        clicks={feedbacks}
         updateFeedback={updateFeedback}
         totalFeedback={totalFeedback}
         handleReset={handleReset}
       />
       {totalFeedback > 0 ? (
         <Feedback
-          good={clicks.good}
-          neutral={clicks.neutral}
-          bad={clicks.bad}
+          good={feedbacks.good}
+          neutral={feedbacks.neutral}
+          bad={feedbacks.bad}
           totalFeedback={totalFeedback}
         />
       ) : (
