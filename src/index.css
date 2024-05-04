@@ -10,21 +10,11 @@
 body {
     font-family: 'Inter', sans-serif;
     font-weight: 400;
-    background-color: #0e1823;
-    color: #fbfbfb;
+    background-color: #fdfdfd;
+    color: #0c0c0c;
 }
 
 /* Reset styles */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-    margin: 0;
-}
-
 
 p:last-child {
     margin-bottom: 0;
@@ -32,8 +22,6 @@ p:last-child {
 
 
 ul {
-    margin: 0;
-    padding: 0;
     list-style: none;
 }
 
